@@ -104,15 +104,14 @@ class Users extends \Core\Controller
 
         // Validate the request params
         $validationErrors = [];
-        if (!$userName || preg_match('/[^a-z.]/', $userName)) {
+        if ($userName && !preg_match('/^[a-z]+$/', $userName)) {
             $validationErrors[] = "The username must have small letter alphabet";
         }
-        
         // Check if the username alredy taken
-        if ($this->_user->hasUserName($userName)) {
+        elseif ($this->_user->hasUserName($userName)) {
             $validationErrors[] = "The username already taken";
         }
-
+        
         // Check if the email is valid
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $validationErrors[] = "The email address is invalid.";

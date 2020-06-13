@@ -36,7 +36,7 @@ class User extends \Core\Model
             ]
         );
 
-        if (!password_verify($password, $userData['password'])) {
+        if ($userData && !password_verify($password, $userData['password'])) {
             return false;
         }
 

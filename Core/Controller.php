@@ -105,7 +105,7 @@ abstract class Controller
             'message' => $message,
             'response' => $result,
             'errorList' => $errorList,
-        ]);
+        ], $code);
 
         $response->send();
         exit;

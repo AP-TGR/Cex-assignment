@@ -37,8 +37,9 @@ class Users extends \Core\Controller
             );
         }
 
-        // Don't send the password
+        // Don't send the password and access token
         unset($data['password']);
+        unset($data['access_token']);
 
         $this->sendResponse(
             Config::HTTP_SUCCESS,
@@ -80,7 +81,10 @@ class Users extends \Core\Controller
         $this->sendResponse(
             Config::HTTP_SUCCESS,
             'You are Login Successfully.',
-            ['token' => $token],
+            [
+                'id' => $user['id'],
+                'token' => $token
+            ],
         );
     }
 
